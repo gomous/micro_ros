@@ -1,0 +1,46 @@
+xhost -local:root
+    make sure this is done or else gui from the containers will not show 
+
+sudo docker run -it \
+  --name ros2_foxy_container \
+  --network host \
+  --privileged \
+  -v /dev:/dev \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -e DISPLAY=$DISPLAY \
+  -v $HOME/.Xauthority:/root/.Xauthority \
+  -v $(pwd):/workspace \
+  ros2_foxy:latest
+
+Use Docker volume binding correctly
+
+To open the same container in different termainl use 
+    sudo docker exec -it ros2_foxy_container bash
+
+Alternatively: If the container is stopped:
+    sudo docker start -ai ros2_foxy_container
+
+apt install ros-foxy-turtlesim 
+    to check if turtlesim is installed 
+
+
+ros2 pkg executables turtlesim
+    to check the turtle sim executables
+
+ros2 run turtlesim turtlesim_node
+    to run the turtle_node 
+
+ros2 run turtlesim turtle_teleop_key
+    to launch a control feature for the turtlesim
+
+apt update
+apt install -y ros-foxy-rqt* python3-pyqt5
+    to install rqt (if not installed, although the Dockerfile ensures it)
+
+rqt 
+    to launch the rqt (if its blank don't worry, its all there you have to go to Plugins > Topics > Topic Monitor)
+
+    use this link to learn about rqt (basics) https://youtu.be/KEcqO_gIJtU?si=KMBdecfUMrUu1h_U
+
+ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle/:=turtle2/cmd_vel
+    if in case there are two turtle use this to assign control to the second one 
