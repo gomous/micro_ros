@@ -37,3 +37,5 @@ RUN rosdep init && rosdep update
 RUN echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
 
 CMD ["bash"]
+
+# Hi testing 
