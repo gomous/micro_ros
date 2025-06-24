@@ -44,3 +44,16 @@ rqt
 
 ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle/:=turtle2/cmd_vel
     if in case there are two turtle use this to assign control to the second one 
+
+
+ros2 topic echo /turtle1/cmd_vel
+    to print the turtle velocity 
+
+ros2 topic list -t 
+    display type of topic
+
+
+ros2 topic info /turtle1/cmd_vel
+
+
+ros2 interface show geometry_msg/msg/Twist
