@@ -1,4 +1,4 @@
-xhost -local:root
+xhost +local:root
     make sure this is done or else gui from the containers will not show 
 
 sudo docker run -it \
@@ -60,3 +60,10 @@ ros2 interface show geometry_msg/msg/Twist
 
 ros2 launch teleop_twist_joy teleop-launch.py joy_config:='xbox'
     to launch the telop twist in terminal
+
+
+Setup for micro ros aruduino
+    -Install aruduino
+    -Setup the esp32 
+    -Include the micro ros library from https://github.com/BxNxM/micrOS
+    
