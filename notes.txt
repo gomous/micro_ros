@@ -66,4 +66,36 @@ Setup for micro ros aruduino
     -Install aruduino
     -Setup the esp32 
     -Include the micro ros library from https://github.com/BxNxM/micrOS
+
+    go to the workspace inside the container go to src 
+        git clone https://github.com/micro-ROS/micro-ROS-Agent.git -b foxy
+        git clone https://github.com/micro-ROS/micro_ros_msgs.git
+
+    cd /workspace
+    source /opt/ros/foxy/setup.bash
+    colcon build --symlink-install
+
+    after this 
     
+            sudo docker run -it \
+        --name ros2_foxy_container \
+        --network host \
+        --privileged \
+        -v /dev:/dev \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -e DISPLAY=$DISPLAY \
+        -v $HOME/.Xauthority:/root/.Xauthority \
+        -v $(pwd):/workspace \
+        ros2_foxy:latest
+
+    ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
+        to run using wifi
+    
+    ros2 topic list
+        to view the names of the topic list (say esp_pub_sub)
+    
+    ros2 topic echo /esp_pub_sub
+        to view what the esp32 is publishing
+
+    ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
+        inside the container to enable the wifi feature
