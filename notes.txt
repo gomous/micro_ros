@@ -99,3 +99,10 @@ Setup for micro ros aruduino
 
     ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
         inside the container to enable the wifi feature
+
+
+How to start it again
+    sudo docker start -ai test_container
+    ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
+    ros2 topic 
+    ros2 launch teleop_twist_joy teleop-launch.py joy_confg='xbox'
